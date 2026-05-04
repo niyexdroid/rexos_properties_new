@@ -1,0 +1,193 @@
+import Link from "next/link";
+import Image from "next/image";
+
+const companyLinks = [
+  { label: "Home", href: "/" },
+  { label: "About us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Project", href: "/properties" },
+  { label: "Portfolio", href: "/properties" },
+  { label: "Blog & News", href: "/blog" },
+  { label: "FAQ", href: "/#faq" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-blue-steel text-white">
+      {/* Top Banner */}
+      <div className="hidden sm:block px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16 pb-10">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase max-w-2xl leading-tight">
+            Rex&apos;o&apos;s Properties Combines Local Expertise With
+            International Standards.
+          </h2>
+        </div>
+      </div>
+
+      {/* Footer Body */}
+      <div className="px-4 sm:px-6 lg:px-8 py-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+          {/* Left Side: Logo & Info */}
+          <div>
+            <div className="mb-4">
+              <Image
+                src="/assets/images/Icon/logo-footer.svg"
+                alt="Rex'o's Properties"
+                width={116}
+                height={36}
+              />
+            </div>
+            <p className="text-sm text-white/80 mb-6 leading-relaxed max-w-md">
+              At Rex&apos;o&apos;s Properties, excellence is not overstated, it
+              is embedded. Each development reflects our dedication to creating
+              residences of integrity, comfort, and quiet distinction.
+            </p>
+
+            {/* Contact Info */}
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-2">
+                <Image
+                  src="/assets/images/Icon/map-icon-outline.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="mt-0.5"
+                />
+                <span>No 8B, Abiodun Ikomi Street, Lekki , Lagos.</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/assets/images/Icon/phone-icon-outline.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                />
+                <span>+234 916 474 2000</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/assets/images/Icon/email-icon-outline.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                />
+                <span>info@rexsoproperties.com</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side: Links Columns */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+            {/* Company Links */}
+            <div>
+              <h3 className="font-semibold text-sm uppercase tracking-wider mb-4">
+                Company
+              </h3>
+              <ul className="space-y-3">
+                {companyLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/80 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Support */}
+            <div>
+              <h3 className="font-semibold text-sm uppercase tracking-wider mb-4">
+                Support
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-sm text-white/80 hover:text-white transition-colors"
+                  >
+                    Contact us
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Social */}
+            <div>
+              <h3 className="font-semibold text-sm uppercase tracking-wider mb-4">
+                Social
+              </h3>
+              <div className="flex items-center gap-4">
+                <a
+                  href="#"
+                  aria-label="Facebook"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
+                  <Image
+                    src="/assets/images/Icon/Social Media Icon.svg"
+                    alt="Facebook"
+                    width={20}
+                    height={20}
+                  />
+                </a>
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
+                  <Image
+                    src="/assets/images/Icon/Social Media Icon-1.svg"
+                    alt="Instagram"
+                    width={20}
+                    height={20}
+                  />
+                </a>
+                <a
+                  href="#"
+                  aria-label="TikTok"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto border-t border-white/20 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-white/60">
+          <p>&copy; 2026 Rex&apos;o&apos;s Properties All rights reserved</p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/privacy"
+              className="hover:text-white transition-colors"
+            >
+              Privacy
+            </Link>
+            <span>|</span>
+            <Link
+              href="/copyright"
+              className="hover:text-white transition-colors"
+            >
+              Copyright
+            </Link>
+            <span>|</span>
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Terms of Use
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

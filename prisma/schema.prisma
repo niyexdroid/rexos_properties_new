@@ -1,0 +1,118 @@
+// Prisma v5 Schema — much simpler than v7!
+// The generator creates a client in node_modules/@prisma/client
+// so you just import { PrismaClient } from "@prisma/client"
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── AUTH ────────────────────────────────────────────
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── PROPERTIES ──────────────────────────────────────
+model Property {
+  id          String          @id @default(cuid())
+  title       String
+  slug        String          @unique
+  description String
+  price       Float
+  location    String
+  type        String          // "sale" | "rent"
+  status      String          @default("available")
+  bedrooms    Int             @default(0)
+  bathrooms   Int             @default(0)
+  area        Float?
+  brochureUrl String?
+  featured    Boolean         @default(false)
+  images      PropertyImage[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model PropertyImage {
+  id         String   @id @default(cuid())
+  url        String
+  alt        String?
+  order      Int      @default(0)
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+}
+
+// ─── EDITABLE PAGE CONTENT ───────────────────────────
+model PageContent {
+  id        String   @id @default(cuid())
+  page      String
+  section   String
+  key       String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([page, section, key])
+}
+
+// ─── TEAM MEMBERS ────────────────────────────────────
+model TeamMember {
+  id       String  @id @default(cuid())
+  name     String
+  role     String
+  imageUrl String?
+  bio      String?
+  order    Int     @default(0)
+}
+
+// ─── BLOG / NEWS ─────────────────────────────────────
+model BlogPost {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String
+  excerpt   String?
+  imageUrl  String?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── ENQUIRIES / MESSAGES ────────────────────────────
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// ─── SITE SETTINGS ───────────────────────────────────
+model SiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
+
+// ─── TESTIMONIALS ────────────────────────────────────
+model Testimonial {
+  id       String  @id @default(cuid())
+  name     String
+  role     String?
+  content  String
+  imageUrl String?
+  rating   Int     @default(5)
+  order    Int     @default(0)
+}

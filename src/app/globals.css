@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/*
+ * @font-face loads fonts from local files instead of Google Fonts.
+ * woff2 is the most compressed web font format — fastest loading.
+ *
+ * "font-display: swap" means: show text immediately in a fallback font,
+ * then swap to the custom font once it loads. This prevents invisible text.
+ */
+
+/* ── Oswald — used for headings (bold, uppercase feel) ── */
+@font-face {
+  font-family: "Oswald";
+  src: url("/assets/fonts/oswald/Oswald-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── GeneralSans — used for body text, nav, buttons ── */
+@font-face {
+  font-family: "GeneralSans";
+  src: url("/assets/fonts/general-sans/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GeneralSans";
+  src: url("/assets/fonts/general-sans/GeneralSans-VariableItalic.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme inline {
+  /* ── Brand Colors ── */
+  --color-navy: #1B2A4A;
+  --color-navy-light: #536494;
+  --color-navy-dark: #111D35;
+  --color-blue-steel: #4A5A8A;
+  --color-white: #ffffff;
+  --color-gray-light: #F5F5F5;
+  --color-gray: #9CA3AF;
+  --color-gray-dark: #6B7280;
+  --color-background: #ffffff;
+  --color-foreground: #1B2A4A;
+
+  /* ── Font Families ── */
+  --font-heading: "Oswald", sans-serif;
+  --font-sans: "GeneralSans", sans-serif;
+}
+
+/* ── Base Styles ── */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* ── Heading Font ── */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+}
+
+html {
+  scroll-behavior: smooth;
+}
